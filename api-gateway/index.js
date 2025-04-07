@@ -1,24 +1,23 @@
 
 const express = require('express')
-const axios = require('axios')
 const app = express()
 const PORT = process.env.PORT || 3000
+require('dotenv').config()
 
+// routes
+const userRoutes = require('./routes/userRoutes.js');
+const productRoutes = require('./routes/productRoutes.js')
+
+app.use(express.json())
 
 // user service
-app.get('/user', async (req, res) => {
-    const response = await axios.get('http://localhost:3001/user')
-    res.json(response?.data)
-})
+app.use('/api/users', userRoutes);
 
 // product service
-app.get('/product', async(req, res) => {
-    const response = await axios.get('http://localhost:3002/product')
-    res.json(response?.data)
-})
+app.use('/api/products', productRoutes)
 
 app.listen(PORT, ()=>{
-    console.log(`Gateway is running on http://localhost:${PORT}`)
+    console.log(`Gateway is running on: http://localhost:${PORT}`)
 })
 
 
