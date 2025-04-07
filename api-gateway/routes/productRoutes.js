@@ -11,6 +11,13 @@ router.post('/add', (req, res) => {
     })
 }) 
 
+router.get('/', (req, res) => {
+    client.GetAllProducts({}, (err, response)=>{
+        if(err) return res.status(500).send(err);
+        res.json(response.products || [])
+
+    })
+})
 
 module.exports = router
 

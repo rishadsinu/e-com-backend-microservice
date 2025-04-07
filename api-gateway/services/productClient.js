@@ -4,7 +4,6 @@ const path = require('path')
 
 const PROTO_PATH = path.resolve(__dirname, '../../product-service/proto/product.proto')
 
-// Add options to correctly handle the proto definition
 const packageDef = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
   longs: String,
@@ -15,7 +14,6 @@ const packageDef = protoLoader.loadSync(PROTO_PATH, {
 
 const protoDescriptor = grpc.loadPackageDefinition(packageDef);
 
-// Print available services
 console.log("Available services:", Object.keys(protoDescriptor));
 
 const ProductService = protoDescriptor.ProductService;
@@ -27,7 +25,3 @@ const client = new ProductService(
 );
 
 module.exports = client;
-
-
-
-
