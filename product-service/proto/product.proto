@@ -4,6 +4,7 @@ syntax = "proto3";
 service ProductService {
     rpc AddProduct (ProductRequest) returns (ProductResponse);
     rpc GetAllProducts (Empty) returns (ProductList);
+    rpc OrderProduct (OrderRequest) returns (OrderResponse);
 }
 
 message ProductRequest {
@@ -17,6 +18,15 @@ message ProductResponse {
 
 message ProductList {
     repeated ProductRequest products = 1; 
+}
+
+message OrderRequest {
+    string productId = 1;
+    int32 quantity = 2;
+}
+
+message OrderResponse {
+    string message = 1;
 }
 
 message Empty {}
