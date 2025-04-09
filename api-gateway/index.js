@@ -11,10 +11,10 @@ const productRoutes = require('./routes/productRoutes.js')
 app.use(express.json())
 
 // user service
-app.use('/api/users', userRoutes);
+app.use('/users', userRoutes);
 
 // product service
-app.use('/api/products', productRoutes)
+app.use('/products', productRoutes)
 
 app.listen(PORT, ()=>{
     console.log(`Gateway is running on: http://localhost:${PORT}`)
